@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.test.controller.IAController"
+      spacing="24" style="-fx-padding: 0 8 24 0;">
+
+    <!-- ── LEFT : Actions panel ─────────────────────────────── -->
+    <VBox spacing="16" prefWidth="280">
+
+        <VBox spacing="4">
+            <Label text="Assistant IA"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;"/>
+            <Label text="Propulsé par Google Gemini 2.5"
+                   style="-fx-font-size: 12px; -fx-text-fill: #9f9bcf;"/>
+        </VBox>
+
+        <Label fx:id="statusLabel" text="Chargement..." wrapText="true"
+               style="-fx-font-size: 12px; -fx-text-fill: #888;"/>
+
+        <!-- Feature 1 : Améliorer CV -->
+        <VBox spacing="10"
+              style="-fx-background-color: white; -fx-background-radius: 12;
+                     -fx-padding: 18; -fx-border-color: #e8e6f8;
+                     -fx-border-radius: 12; -fx-border-width: 1;">
+            <Label text="📝  Améliorer mon CV"
+                   style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #534AB7;"/>
+            <Label text="Gemini réécrit votre CV avec un langage professionnel et percutant."
+                   wrapText="true" style="-fx-font-size: 12px; -fx-text-fill: #666;"/>
+            <Button fx:id="btnAmeliorer" text="Améliorer mon CV"
+                    onAction="#handleAmeliorer" maxWidth="Infinity"
+                    style="-fx-background-color: #534AB7; -fx-text-fill: white;
+                           -fx-background-radius: 6; -fx-padding: 9 16;
+                           -fx-font-size: 13px; -fx-cursor: hand;"/>
+        </VBox>
+
+        <!-- Feature 2 : Suggérer compétences -->
+        <VBox spacing="10"
+              style="-fx-background-color: white; -fx-background-radius: 12;
+                     -fx-padding: 18; -fx-border-color: #e8e6f8;
+                     -fx-border-radius: 12; -fx-border-width: 1;">
+            <Label text="💡  Compétences manquantes"
+                   style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #534AB7;"/>
+            <Label text="Découvrez les compétences à acquérir pour booster votre profil."
+                   wrapText="true" style="-fx-font-size: 12px; -fx-text-fill: #666;"/>
+            <Button fx:id="btnSuggerer" text="Analyser mon profil"
+                    onAction="#handleSuggerer" maxWidth="Infinity"
+                    style="-fx-background-color: #1D9E75; -fx-text-fill: white;
+                           -fx-background-radius: 6; -fx-padding: 9 16;
+                           -fx-font-size: 13px; -fx-cursor: hand;"/>
+        </VBox>
+
+        <!-- Feature 3 : Simuler entretien -->
+        <VBox spacing="10"
+              style="-fx-background-color: white; -fx-background-radius: 12;
+                     -fx-padding: 18; -fx-border-color: #e8e6f8;
+                     -fx-border-radius: 12; -fx-border-width: 1;">
+            <Label text="🎤  Simuler un entretien"
+                   style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #534AB7;"/>
+            <Label text="Préparez-vous avec des questions personnalisées à votre profil."
+                   wrapText="true" style="-fx-font-size: 12px; -fx-text-fill: #666;"/>
+            <VBox spacing="6">
+                <Label text="Poste visé (optionnel)"
+                       style="-fx-font-size: 11px; -fx-text-fill: #888;"/>
+                <TextField fx:id="posteField"
+                           promptText="Ex : Développeur Java, Data Analyst..."
+                           maxWidth="Infinity"/>
+            </VBox>
+            <Button fx:id="btnEntretien" text="Générer les questions"
+                    onAction="#handleEntretien" maxWidth="Infinity"
+                    style="-fx-background-color: #E49B0F; -fx-text-fill: white;
+                           -fx-background-radius: 6; -fx-padding: 9 16;
+                           -fx-font-size: 13px; -fx-cursor: hand;"/>
+        </VBox>
+
+        <!-- Loading -->
+        <VBox fx:id="loadingBox" spacing="8" alignment="CENTER" style="-fx-padding: 10;">
+            <ProgressIndicator prefWidth="36" prefHeight="36"/>
+            <Label text="Gemini réfléchit..."
+                   style="-fx-font-size: 12px; -fx-text-fill: #534AB7;"/>
+        </VBox>
+
+    </VBox>
+
+    <!-- ── RIGHT : Result area ──────────────────────────────── -->
+    <VBox spacing="12" HBox.hgrow="ALWAYS">
+
+        <!-- Top bar : title + buttons -->
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <Label text="Résultat"
+                   style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;"
+                   HBox.hgrow="ALWAYS"/>
+            <Button text="📋  Copier" onAction="#handleCopier"
+                    style="-fx-background-color: transparent; -fx-border-color: #534AB7;
+                           -fx-text-fill: #534AB7; -fx-border-radius: 5; -fx-background-radius: 5;
+                           -fx-padding: 6 14; -fx-font-size: 12px; -fx-cursor: hand;"/>
+            <Button text="🗑  Effacer" onAction="#handleEffacer"
+                    style="-fx-background-color: transparent; -fx-border-color: #ccc;
+                           -fx-text-fill: #888; -fx-border-radius: 5; -fx-background-radius: 5;
+                           -fx-padding: 6 14; -fx-font-size: 12px; -fx-cursor: hand;"/>
+        </HBox>
+
+        <!-- Apply button — visible only after CV improvement -->
+        <HBox fx:id="appliquerBox" alignment="CENTER_LEFT" spacing="10"
+              style="-fx-background-color: #edfaf4; -fx-background-radius: 8;
+                     -fx-padding: 10 16; -fx-border-color: #1D9E75;
+                     -fx-border-radius: 8; -fx-border-width: 1;">
+            <Label text="✨  Le CV amélioré est prêt."
+                   style="-fx-font-size: 12px; -fx-text-fill: #1D9E75;" HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnAppliquer" text="✅  Appliquer et sauvegarder"
+                    onAction="#handleAppliquer"
+                    style="-fx-background-color: #1D9E75; -fx-text-fill: white;
+                           -fx-background-radius: 6; -fx-padding: 8 18;
+                           -fx-font-size: 12px; -fx-cursor: hand;"/>
+        </HBox>
+
+        <!-- Result text area -->
+        <TextArea fx:id="resultArea"
+                  promptText="Le résultat de l'IA apparaîtra ici..."
+                  VBox.vgrow="ALWAYS" wrapText="true" editable="false"
+                  style="-fx-font-size: 13px; -fx-background-color: white;
+                         -fx-background-radius: 12; -fx-border-color: #e8e6f8;
+                         -fx-border-radius: 12; -fx-border-width: 1; -fx-padding: 16;"/>
+    </VBox>
+
+</HBox>

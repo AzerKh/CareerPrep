@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      spacing="16" style="-fx-padding: 0 8;">
+
+    <Label text="Offres d'emploi"
+           style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;"/>
+    <Label text="Ce module sera disponible prochainement."
+           style="-fx-font-size: 13px; -fx-text-fill: #888;"/>
+</VBox>

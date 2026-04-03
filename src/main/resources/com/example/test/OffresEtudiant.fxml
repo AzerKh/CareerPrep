@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.test.controller.OffresEtudiantController"
+      spacing="20" style="-fx-padding: 0 8 24 0;">
+
+    <!-- Header -->
+    <VBox spacing="4">
+        <Label text="Offres d'emploi"
+               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;"/>
+        <Label text="Recherchez des offres et postulez avec votre CV"
+               style="-fx-font-size: 13px; -fx-text-fill: #888;"/>
+    </VBox>
+
+    <!-- Search bar + filter -->
+    <HBox spacing="12" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="🔍  Rechercher par titre ou entreprise..."
+                   HBox.hgrow="ALWAYS"
+                   style="-fx-padding: 9 14; -fx-background-radius: 8;
+                          -fx-border-color: #ddd; -fx-border-radius: 8;"/>
+        <ComboBox fx:id="filterType" promptText="Type de contrat" prefWidth="160"/>
+        <Button text="Rechercher" onAction="#handleRechercher"
+                style="-fx-background-color: #534AB7; -fx-text-fill: white;
+                       -fx-background-radius: 8; -fx-padding: 9 20;
+                       -fx-font-size: 13px; -fx-cursor: hand;"/>
+        <Button text="Tout afficher" onAction="#handleToutAfficher"
+                style="-fx-background-color: transparent; -fx-border-color: #534AB7;
+                       -fx-text-fill: #534AB7; -fx-border-radius: 8; -fx-background-radius: 8;
+                       -fx-padding: 8 16; -fx-font-size: 13px; -fx-cursor: hand;"/>
+    </HBox>
+
+    <Label fx:id="messageLabel" text="" style="-fx-font-size: 12px;"/>
+
+    <!-- Offers list -->
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                style="-fx-background: transparent; -fx-background-color: transparent;
+                       -fx-border-color: transparent;">
+        <VBox fx:id="offresListContainer" spacing="12"/>
+    </ScrollPane>
+
+</VBox>

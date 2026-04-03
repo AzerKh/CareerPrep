@@ -1,0 +1,137 @@
+import java.sql.*;
+import java.util.*;
+
+public class SQLiteBookDAO {
+
+    private Connection conn;
+
+    public SQLiteBookDAO() {
+        try {
+            String url = "jdbc:sqlite:books.db";
+            conn = DriverManager.getConnection(url);
+            System.out.println("Connexion établie");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    // Ajouter un livre
+    public void create(Book book) {
+        String sql = "INSERT INTO books(title, author, numberPages, year) VALUES(?,?,?,?)";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, book.getTitle());
+            pstmt.setString(2, book.getAuthor());
+            pstmt.setInt(3, book.getNumberPages());
+            pstmt.setInt(4, book.getYear());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    // Lire tous les livres
+    public List<Book> read() {
+        List<Book> books = new ArrayList<>();
+        String sql = "SELECT * FROM books";
+
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Book b = new Book(
+                        rs.getString("title"),
+                        rs.getString("author"),
+                        rs.getInt("numberPages"),
+                        rs.getInt("year")
+                );
+                books.add(b);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return books;
+    }
+
+    // Chercher par titre
+    public Book findByTitle(String title) {
+        String sql = "SELECT * FROM books WHERE title = ?";
+        Book book = null;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, title);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                book = new Book(
+                        rs.getString("title"),
+                        rs.getString("author"),
+                        rs.getInt("numberPages"),
+                        rs.getInt("year")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return book;
+    }
+
+    // Chercher par auteur
+    public List<Book> findByAuthor(String author) {
+        List<Book> books = new ArrayList<>();
+        String sql = "SELECT * FROM books WHERE author = ?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, author);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                books.add(new Book(
+                        rs.getString("title"),
+                        rs.getString("author"),
+                        rs.getInt("numberPages"),
+                        rs.getInt("year")
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return books;
+    }
+
+    // Nombre de livres par auteur
+    public Map<String, Long> getNumberOfBooksByAuthor() {
+        Map<String, Long> map = new HashMap<>();
+        String sql = "SELECT author, COUNT(*) as nb FROM books GROUP BY author";
+
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                map.put(rs.getString("author"), rs.getLong("nb"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return map;
+    }
+
+    // Supprimer par titre
+    public int delete(String title) {
+        String sql = "DELETE FROM books WHERE title = ?";
+        int deleted = 0;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, title);
+            deleted = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return deleted;
+    }
+}

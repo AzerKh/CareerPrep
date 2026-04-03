@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.test.controller.ProfilController"
+      spacing="20"
+      style="-fx-padding: 40; -fx-background-color: #f5f5f5;">
+
+    <Label text="Mon Profil"
+           style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;"/>
+
+    <TitledPane text="Informations personnelles" collapsible="false">
+        <VBox spacing="10" style="-fx-padding: 12;">
+            <HBox spacing="10">
+                <TextField fx:id="nomField" promptText="Nom" HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="prenomField" promptText="Prénom" HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <TextField fx:id="emailField" promptText="Email" maxWidth="Infinity"/>
+            <Button text="Mettre à jour" onAction="#handleModifierInfos"
+                    style="-fx-background-color: #1D9E75; -fx-text-fill: white; -fx-background-radius: 5;"/>
+        </VBox>
+    </TitledPane>
+
+    <TitledPane text="Parcours &amp; compétences" collapsible="false">
+        <VBox spacing="10" style="-fx-padding: 12;">
+            <Label text="Formation" style="-fx-font-weight: bold;"/>
+            <TextArea fx:id="formationArea"
+                      promptText="Ex : Licence Informatique, Université de Tunis..."
+                      prefRowCount="3" wrapText="true"/>
+
+            <Label text="Compétences" style="-fx-font-weight: bold;"/>
+            <TextArea fx:id="competencesArea"
+                      promptText="Ex : Java, Python, SQL, JavaFX..."
+                      prefRowCount="3" wrapText="true"/>
+
+            <Label text="Expériences" style="-fx-font-weight: bold;"/>
+            <TextArea fx:id="experiencesArea"
+                      promptText="Ex : Stage développeur chez X, 2024..."
+                      prefRowCount="4" wrapText="true"/>
+
+            <Label fx:id="messageLabel" text="" wrapText="true"/>
+
+            <Button text="Enregistrer le profil" onAction="#handleModifierProfil"
+                    style="-fx-background-color: #534AB7; -fx-text-fill: white; -fx-background-radius: 5;"/>
+        </VBox>
+    </TitledPane>
+
+    <Button text="Gérer mon CV" onAction="#handleGererCV"
+            style="-fx-background-color: #534AB7; -fx-text-fill: white;
+               -fx-background-radius: 5; -fx-padding: 8 20;"/>
+    <Button text="Se déconnecter" onAction="#handleDeconnexion"
+            style="-fx-background-color: transparent; -fx-border-color: #c0392b;
+                   -fx-text-fill: #c0392b; -fx-background-radius: 5; -fx-border-radius: 5;"/>
+
+</VBox>

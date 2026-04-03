@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.test.controller.ProfilContentController"
+            fitToWidth="true"
+            style="-fx-background: transparent; -fx-background-color: transparent;
+                   -fx-border-color: transparent;">
+
+    <VBox spacing="20" style="-fx-padding: 0 8 24 0;">
+
+        <!-- Header -->
+        <VBox spacing="4">
+            <Label text="Mon Profil"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;"/>
+            <Label text="Gérez vos informations personnelles"
+                   style="-fx-font-size: 13px; -fx-text-fill: #888;"/>
+        </VBox>
+
+        <!-- Card : Infos personnelles uniquement -->
+        <VBox spacing="14"
+              style="-fx-background-color: white; -fx-background-radius: 12;
+                     -fx-padding: 24; -fx-border-color: #e8e6f8;
+                     -fx-border-radius: 12; -fx-border-width: 1;">
+
+            <Label text="Informations personnelles"
+                   style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #534AB7;"/>
+
+            <HBox spacing="14">
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Nom" style="-fx-text-fill: #555; -fx-font-size: 12px;"/>
+                    <TextField fx:id="nomField" promptText="Nom" maxWidth="Infinity"/>
+                </VBox>
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Prénom" style="-fx-text-fill: #555; -fx-font-size: 12px;"/>
+                    <TextField fx:id="prenomField" promptText="Prénom" maxWidth="Infinity"/>
+                </VBox>
+            </HBox>
+
+            <VBox spacing="6">
+                <Label text="Email" style="-fx-text-fill: #555; -fx-font-size: 12px;"/>
+                <TextField fx:id="emailField" promptText="Email" maxWidth="Infinity"/>
+            </VBox>
+
+            <Label fx:id="infoMessage" text="" wrapText="true" style="-fx-font-size: 12px;"/>
+
+            <Button text="Mettre à jour"
+                    onAction="#handleModifierInfos"
+                    style="-fx-background-color: #534AB7; -fx-text-fill: white;
+                           -fx-background-radius: 6; -fx-padding: 9 20;
+                           -fx-font-size: 13px; -fx-cursor: hand;"/>
+        </VBox>
+
+    </VBox>
+</ScrollPane>

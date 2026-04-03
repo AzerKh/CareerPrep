@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.test.controller.OffresRecruteurController"
+      spacing="24" style="-fx-padding: 0 8 24 0;">
+
+    <!-- ── LEFT : Form ──────────────────────────────────────── -->
+    <VBox spacing="14" prefWidth="300"
+          style="-fx-background-color: white; -fx-background-radius: 12;
+                 -fx-padding: 24; -fx-border-color: #e8e6f8;
+                 -fx-border-radius: 12; -fx-border-width: 1;">
+
+        <Label fx:id="formTitle" text="Publier une offre"
+               style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #534AB7;"/>
+
+        <VBox spacing="5">
+            <Label text="Titre du poste *" style="-fx-text-fill: #555; -fx-font-size: 12px;"/>
+            <TextField fx:id="titreField" promptText="Ex : Développeur Java" maxWidth="Infinity"/>
+        </VBox>
+
+        <VBox spacing="5">
+            <Label text="Entreprise *" style="-fx-text-fill: #555; -fx-font-size: 12px;"/>
+            <TextField fx:id="entrepriseField" promptText="Ex : Tunisie Telecom" maxWidth="Infinity"/>
+        </VBox>
+
+        <VBox spacing="5">
+            <Label text="Type de contrat" style="-fx-text-fill: #555; -fx-font-size: 12px;"/>
+            <ComboBox fx:id="typeCombo" maxWidth="Infinity"/>
+        </VBox>
+
+        <VBox spacing="5">
+            <Label text="Date limite" style="-fx-text-fill: #555; -fx-font-size: 12px;"/>
+            <DatePicker fx:id="dateLimitePicker" maxWidth="Infinity"/>
+        </VBox>
+
+        <VBox spacing="5">
+            <Label text="Description" style="-fx-text-fill: #555; -fx-font-size: 12px;"/>
+            <TextArea fx:id="descriptionArea" promptText="Missions, profil recherché..."
+                      prefRowCount="4" wrapText="true"/>
+        </VBox>
+
+        <Label fx:id="messageLabel" text="" wrapText="true" style="-fx-font-size: 12px;"/>
+
+        <Button fx:id="ajouterBtn" text="Publier l'offre"
+                onAction="#handleSauvegarder" maxWidth="Infinity"
+                style="-fx-background-color: #534AB7; -fx-text-fill: white;
+                       -fx-background-radius: 6; -fx-padding: 9 20;
+                       -fx-font-size: 13px; -fx-cursor: hand;"/>
+
+        <Button text="Annuler" onAction="#handleAnnuler" maxWidth="Infinity"
+                style="-fx-background-color: transparent; -fx-border-color: #ccc;
+                       -fx-text-fill: #888; -fx-border-radius: 6; -fx-background-radius: 6;
+                       -fx-padding: 8 20; -fx-font-size: 12px; -fx-cursor: hand;"/>
+    </VBox>
+
+    <!-- ── RIGHT : List ─────────────────────────────────────── -->
+    <VBox spacing="16" HBox.hgrow="ALWAYS">
+        <VBox spacing="4">
+            <Label text="Mes offres publiées"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;"/>
+            <Label text="Créez, modifiez et supprimez vos offres d'emploi"
+                   style="-fx-font-size: 13px; -fx-text-fill: #888;"/>
+        </VBox>
+
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                    style="-fx-background: transparent; -fx-background-color: transparent;
+                           -fx-border-color: transparent;">
+            <VBox fx:id="offresListContainer" spacing="12"/>
+        </ScrollPane>
+    </VBox>
+</HBox>

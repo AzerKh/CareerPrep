@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.test.controller.CVController"
+            fitToWidth="true"
+            style="-fx-background: transparent; -fx-background-color: transparent;
+                   -fx-border-color: transparent;">
+
+    <VBox spacing="20" style="-fx-padding: 0 8 24 0;">
+
+        <!-- Header -->
+        <VBox spacing="4">
+            <Label text="Mon CV"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;"/>
+            <Label text="Créez et exportez votre CV en PDF"
+                   style="-fx-font-size: 13px; -fx-text-fill: #888;"/>
+        </VBox>
+
+        <!-- Card : Titre + Photo -->
+        <VBox spacing="14"
+              style="-fx-background-color: white; -fx-background-radius: 12;
+                     -fx-padding: 24; -fx-border-color: #e8e6f8;
+                     -fx-border-radius: 12; -fx-border-width: 1;">
+
+            <Label text="Identité du CV"
+                   style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #534AB7;"/>
+
+            <HBox spacing="20" alignment="CENTER_LEFT">
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Titre du CV" style="-fx-text-fill: #555; -fx-font-size: 12px;"/>
+                    <TextField fx:id="titreField"
+                               promptText="Ex : Développeur Java Junior"
+                               maxWidth="Infinity"/>
+                </VBox>
+                <VBox spacing="8" alignment="CENTER">
+                    <ImageView fx:id="photoView" fitWidth="80" fitHeight="80"
+                               preserveRatio="true"
+                               style="-fx-border-color: #e0ddf8; -fx-border-width: 2;"/>
+                    <Button fx:id="photoBtn" text="Choisir photo"
+                            onAction="#handleChoisirPhoto"
+                            style="-fx-background-color: transparent; -fx-border-color: #534AB7;
+                                   -fx-text-fill: #534AB7; -fx-border-radius: 4;
+                                   -fx-background-radius: 4; -fx-font-size: 11px;
+                                   -fx-cursor: hand;"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <!-- Card : Contenu CV -->
+        <VBox spacing="14"
+              style="-fx-background-color: white; -fx-background-radius: 12;
+                     -fx-padding: 24; -fx-border-color: #e8e6f8;
+                     -fx-border-radius: 12; -fx-border-width: 1;">
+
+            <Label text="Contenu du CV"
+                   style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #534AB7;"/>
+
+            <VBox spacing="6">
+                <Label text="Formation" style="-fx-text-fill: #555; -fx-font-size: 12px;"/>
+                <TextArea fx:id="formationArea"
+                          promptText="Ex : Licence Informatique — Université de Tunis, 2022-2025"
+                          prefRowCount="3" wrapText="true"/>
+            </VBox>
+
+            <VBox spacing="6">
+                <Label text="Expériences" style="-fx-text-fill: #555; -fx-font-size: 12px;"/>
+                <TextArea fx:id="experiencesArea"
+                          promptText="Ex : Stage développeur JavaFX — Société X, Juin 2024"
+                          prefRowCount="3" wrapText="true"/>
+            </VBox>
+
+            <VBox spacing="6">
+                <Label text="Compétences (séparées par virgules)"
+                       style="-fx-text-fill: #555; -fx-font-size: 12px;"/>
+                <TextArea fx:id="competencesArea"
+                          promptText="Ex : Java, JavaFX, MySQL, Git"
+                          prefRowCount="2" wrapText="true"/>
+            </VBox>
+
+            <VBox spacing="6">
+                <Label text="Langues (séparées par virgules)"
+                       style="-fx-text-fill: #555; -fx-font-size: 12px;"/>
+                <TextArea fx:id="languesArea"
+                          promptText="Ex : Arabe, Français, Anglais"
+                          prefRowCount="2" wrapText="true"/>
+            </VBox>
+        </VBox>
+
+        <Label fx:id="messageLabel" text="" wrapText="true" style="-fx-font-size: 12px;"/>
+
+        <!-- Action buttons -->
+        <HBox spacing="12">
+            <Button fx:id="sauvegarderBtn" text="💾  Sauvegarder le CV"
+                    onAction="#handleSauvegarder"
+                    style="-fx-background-color: #534AB7; -fx-text-fill: white;
+                           -fx-font-size: 13px; -fx-padding: 10 24;
+                           -fx-background-radius: 8; -fx-cursor: hand;"/>
+
+            <Button fx:id="exporterBtn" text="📥  Exporter en PDF"
+                    onAction="#handleExporterPDF"
+                    style="-fx-background-color: #1D9E75; -fx-text-fill: white;
+                           -fx-font-size: 13px; -fx-padding: 10 24;
+                           -fx-background-radius: 8; -fx-cursor: hand;"/>
+        </HBox>
+
+    </VBox>
+</ScrollPane>
