@@ -2,73 +2,89 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
-<?import javafx.geometry.Insets?>
 
 <HBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.test.controller.MainController"
-      prefWidth="1000" prefHeight="680"
-      style="-fx-background-color: #f0eff8;">
+      prefWidth="1000" prefHeight="680">
 
-    <!-- ── SIDEBAR ─────────────────────────────────────────── -->
-    <VBox prefWidth="220"
-          style="-fx-background-color: #2d2654;">
+    <!-- ══════════════ SIDEBAR ══════════════ -->
+    <VBox prefWidth="220" style="-fx-background-color: #2d2654;">
 
-        <!-- App name -->
-        <VBox alignment="CENTER" style="-fx-padding: 30 20 20 20;">
+        <!-- Brand -->
+        <HBox spacing="10" alignment="CENTER_LEFT"
+              style="-fx-padding: 22 16 18 16;
+                     -fx-border-color: rgba(255,255,255,0.08);
+                     -fx-border-width: 0 0 0.5 0;">
+            <StackPane prefWidth="36" prefHeight="36"
+                       style="-fx-background-color: #534AB7; -fx-background-radius: 10;">
+                <Label text="CP"
+                       style="-fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: bold;"/>
+            </StackPane>
             <Label text="CareerPrep"
-                   style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;"/>
-            <Label text="Plateforme IA"
-                   style="-fx-font-size: 11px; -fx-text-fill: #9f9bcf;"/>
-        </VBox>
-
-        <Rectangle height="1" fill="#3d3570">
-            <VBox.margin><Insets left="16" right="16"/></VBox.margin>
-        </Rectangle>
+                   style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+        </HBox>
 
         <!-- User info -->
-        <VBox alignment="CENTER" style="-fx-padding: 16 20;" spacing="3">
-            <Label fx:id="userNameLabel"
-                   style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white;"/>
-            <Label fx:id="userEmailLabel"
-                   style="-fx-font-size: 11px; -fx-text-fill: #9f9bcf;" wrapText="true"/>
-            <Label fx:id="userRoleLabel" text=""
-                   style="-fx-font-size: 11px; -fx-text-fill: #9fd3c7;"/>
+        <HBox spacing="10" alignment="CENTER_LEFT"
+              style="-fx-padding: 14 16;
+                     -fx-border-color: rgba(255,255,255,0.08);
+                     -fx-border-width: 0 0 0.5 0;">
+            <StackPane fx:id="avatarPane" prefWidth="38" prefHeight="38"
+                       style="-fx-background-color: #534AB7; -fx-background-radius: 19;">
+                <Label fx:id="avatarLabel" text="?"
+                       style="-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;"/>
+            </StackPane>
+            <VBox spacing="3">
+                <Label fx:id="userNameLabel" text=""
+                       style="-fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: bold;"/>
+                <Label fx:id="userRoleLabel" text=""
+                       style="-fx-font-size: 10px; -fx-padding: 2 8; -fx-background-radius: 20;"/>
+            </VBox>
+        </HBox>
+
+        <!-- Nav items -->
+        <VBox spacing="2" style="-fx-padding: 12 10;" VBox.vgrow="ALWAYS">
+
+            <Button fx:id="btnProfil" text="  Profil"
+                    maxWidth="Infinity" onAction="#showProfil"
+                    style="-fx-background-color: #534AB7; -fx-text-fill: white;
+                           -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13px;
+                           -fx-alignment: CENTER-LEFT; -fx-cursor: hand;"/>
+
+            <Button fx:id="btnCV" text="  Mon CV"
+                    maxWidth="Infinity" onAction="#showCV"
+                    style="-fx-background-color: transparent; -fx-text-fill: #c5c2e8;
+                           -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13px;
+                           -fx-alignment: CENTER-LEFT; -fx-cursor: hand;"/>
+
+            <Button fx:id="btnOffres" text="  Offres d'emploi"
+                    maxWidth="Infinity" onAction="#showOffres"
+                    style="-fx-background-color: transparent; -fx-text-fill: #c5c2e8;
+                           -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13px;
+                           -fx-alignment: CENTER-LEFT; -fx-cursor: hand;"/>
+
+            <Button fx:id="btnIA" text="  Assistant IA"
+                    maxWidth="Infinity" onAction="#showIA"
+                    style="-fx-background-color: transparent; -fx-text-fill: #c5c2e8;
+                           -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13px;
+                           -fx-alignment: CENTER-LEFT; -fx-cursor: hand;"/>
         </VBox>
-
-        <Rectangle height="1" fill="#3d3570">
-            <VBox.margin><Insets left="16" right="16" bottom="12"/></VBox.margin>
-        </Rectangle>
-
-        <!-- Nav -->
-        <VBox spacing="4" style="-fx-padding: 0 12;">
-            <Button fx:id="btnProfil" text="👤  Profil"
-                    maxWidth="Infinity" onAction="#showProfil"/>
-            <Button fx:id="btnCV" text="📄  Mon CV"
-                    maxWidth="Infinity" onAction="#showCV"/>
-            <Button fx:id="btnOffres" text="💼  Offres d'emploi"
-                    maxWidth="Infinity" onAction="#showOffres"/>
-            <Button fx:id="btnIA" text="🤖  Assistant IA"
-                    maxWidth="Infinity" onAction="#showIA"/>
-        </VBox>
-
-        <Region VBox.vgrow="ALWAYS"/>
 
         <!-- Logout -->
-        <VBox style="-fx-padding: 16 12 24 12;">
-            <Rectangle height="1" fill="#3d3570">
-                <VBox.margin><Insets bottom="12"/></VBox.margin>
-            </Rectangle>
-            <Button text="⏻  Se déconnecter" maxWidth="Infinity"
+        <VBox style="-fx-padding: 12 10 20 10;
+                     -fx-border-color: rgba(255,255,255,0.08);
+                     -fx-border-width: 0.5 0 0 0;">
+            <Button text="  Se déconnecter" maxWidth="Infinity"
                     onAction="#handleDeconnexion"
                     style="-fx-background-color: transparent; -fx-text-fill: #ff6b6b;
-                           -fx-border-color: #ff6b6b; -fx-border-radius: 6;
-                           -fx-background-radius: 6; -fx-padding: 8 12;
-                           -fx-font-size: 13px; -fx-cursor: hand;"/>
+                           -fx-border-color: rgba(255,107,107,0.35); -fx-border-radius: 8;
+                           -fx-background-radius: 8; -fx-padding: 9 14; -fx-font-size: 13px;
+                           -fx-alignment: CENTER-LEFT; -fx-cursor: hand;"/>
         </VBox>
     </VBox>
 
-    <!-- ── CONTENT ─────────────────────────────────────────── -->
+    <!-- ══════════════ CONTENT ══════════════ -->
     <StackPane fx:id="contentArea" HBox.hgrow="ALWAYS"
-               style="-fx-background-color: #f0eff8; -fx-padding: 32;"/>
+               style="-fx-background-color: #f7f6fd; -fx-padding: 28;"/>
 
 </HBox>
